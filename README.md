@@ -1,1 +1,1 @@
-# Thyra-The-Last-WIsh
+# Thyra
