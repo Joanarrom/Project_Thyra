@@ -8,7 +8,7 @@ Los pacientes, sometidos a experimentos prohibidos por el Dr Fennel, se han conv
 
 
 
-#GDD
+#GDD_OnePage
 
 
 [GDD_Onepage](https://www.canva.com/design/DAGU4dG2v_c/6RNu5fvd_RMGBu9jS3DlKw/view?utm_content=DAGU4dG2v_c&utm_campaign=designshare&utm_medium=link&utm_source=editor)
@@ -18,3 +18,9 @@ Los pacientes, sometidos a experimentos prohibidos por el Dr Fennel, se han conv
 
 
 [Enlace_Miro](https://miro.com/app/board/uXjVLID5c0U=/?share_link_id=184632505664)
+
+
+#GDD
+
+
+[EnlaceGDD](https://docs.google.com/document/d/1h7qSmqGCOfVKWduUj0D7mufY968z_1Nca322B3nAf1I/edit?usp=sharing)
