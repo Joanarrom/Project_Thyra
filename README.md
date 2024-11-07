@@ -7,13 +7,6 @@ En un laboratorio abandonado y devastado, el jugador debe controlar a un cyborg 
 Los pacientes, sometidos a experimentos prohibidos por el Dr Fennel, se han convertido en criaturas peligrosas que combinan mutaciones humanas con maquinaria. La misión es cazar a estas aberraciones, enfrentándose a cada una de ellas, en busca de detener los efectos de los experimentos fallidos y restaurar el orden.
 
 
-
-#GDD_OnePage
-
-
-[GDD_Onepage](https://www.canva.com/design/DAGU4dG2v_c/6RNu5fvd_RMGBu9jS3DlKw/view?utm_content=DAGU4dG2v_c&utm_campaign=designshare&utm_medium=link&utm_source=editor)
-
-
 #Miro
 
 
@@ -24,3 +17,6 @@ Los pacientes, sometidos a experimentos prohibidos por el Dr Fennel, se han conv
 
 
 [EnlaceGDD](https://docs.google.com/document/d/1h7qSmqGCOfVKWduUj0D7mufY968z_1Nca322B3nAf1I/edit?usp=sharing)
+
+
+[One_Page_GDD.pdf](https://github.com/user-attachments/files/17659241/One_Page_GDD.pdf)
