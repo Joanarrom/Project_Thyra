@@ -19,5 +19,6 @@ Los pacientes, sometidos a experimentos prohibidos por el Dr Fennel, se han conv
 [EnlaceGDD](https://docs.google.com/document/d/1h7qSmqGCOfVKWduUj0D7mufY968z_1Nca322B3nAf1I/edit?usp=sharing)
 
 
-[One_Page_GDD.pdf](https://github.com/user-attachments/files/17659241/One_Page_GDD.pdf)
+
  
+![Blue and Black Gradient Anime Travel Instagram Post](https://github.com/user-attachments/assets/55766132-d7e5-4c82-9c94-7971618fbf78)
