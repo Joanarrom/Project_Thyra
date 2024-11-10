@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -11,16 +10,17 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 15f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-    public int health = 100;                // Vida del jugador
+    public int health = 100;
 
-    public HealthBar healthBar;             // Referencia a la barra de vida
+    public HealthBar healthBar;
 
     private CharacterController characterController;
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float cooldownTimer = 0f;
+    private Vector3 velocity; // Velocidad del jugador, incluyendo gravedad
 
-    void Start()
+    private void Start()
     {
         characterController = GetComponent<CharacterController>();
 
@@ -29,14 +29,13 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("No se ha asignado una cámara al controlador de jugador.");
         }
 
-        // Inicializar la barra de vida con la salud actual del jugador
         if (healthBar != null)
         {
             healthBar.SetHealth(health);
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (!isDashing && cooldownTimer <= 0f && Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -58,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void MovePlayer()
+    private void MovePlayer()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -71,18 +70,31 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
+            characterController.Move(moveDir * moveSpeed * Time.deltaTime);
         }
+
+        // Aplicar gravedad
+        if (!characterController.isGrounded)
+        {
+            velocity.y += Physics.gravity.y * Time.deltaTime; // Gravedad acumulativa
+        }
+        else
+        {
+            velocity.y = 0f; // Restablecer la velocidad vertical al tocar el suelo
+        }
+
+        // Aplicar la velocidad vertical al CharacterController
+        characterController.Move(velocity * Time.deltaTime);
     }
 
-    void StartDash()
+    private void StartDash()
     {
         isDashing = true;
         dashTimer = dashDuration;
         cooldownTimer = dashCooldown;
     }
 
-    void Dash()
+    private void Dash()
     {
         Vector3 dashDirection = transform.forward;
         characterController.Move(dashDirection * dashSpeed * Time.deltaTime);
@@ -96,35 +108,30 @@ public class PlayerController : MonoBehaviour
 
     // Método para reducir la vida del jugador
     public void TakeDamage(int damage)
-  {
-       
-    
-    if (isDashing)
     {
-        Debug.Log("El jugador está en dash, no recibe daño.");
-        return; // Salir sin aplicar daño si el jugador está en dash
+        if (isDashing)
+        {
+            Debug.Log("El jugador está en dash, no recibe daño.");
+            return; // Salir sin aplicar daño si el jugador está en dash
+        }
+
+        health -= damage;
+        Debug.Log("Salud del jugador: " + health);
+
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(health);
+        }
+
+        if (health <= 0)
+        {
+            Die();
+        }
     }
-
-    health -= damage;
-    Debug.Log("Salud del jugador: " + health);
-
-    // Actualizar la barra de vida
-    if (healthBar != null)
-    {
-        healthBar.SetHealth(health);
-    }
-
-    if (health <= 0)
-    {
-        Die();
-    }
-  
-
-  }
 
     private void Die()
     {
         Debug.Log("¡El jugador ha muerto!");
-        // Aquí puedes implementar lógica para el fin del juego o reiniciar el nivel
+        // Implementar lógica de muerte aquí
     }
 }
