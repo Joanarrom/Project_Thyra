@@ -23,11 +23,5 @@ public class HealthBar : MonoBehaviour
         slider.value = currentHealth;
     }
 
-    public void updateDeath()
-    {
-        if (health <= 0)
-        {
-            Destroy(GameObject.FindWithTag("Player"));
-        }
-    }
+   
 }
