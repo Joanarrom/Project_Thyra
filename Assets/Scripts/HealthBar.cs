@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public int maxHealth = 100;
     public int currentHealth;
+    public PlayerController player;
 
     void Start()
     {
@@ -20,5 +21,13 @@ public class HealthBar : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(health, 0, maxHealth);
         slider.value = currentHealth;
+    }
+
+    public void updateDeath()
+    {
+        if (health <= 0)
+        {
+            Destroy(GameObject.FindWithTag("Player"));
+        }
     }
 }

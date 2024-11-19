@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 1813308717}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,6 +1169,7 @@ MonoBehaviour:
   slider: {fileID: 1969891874}
   maxHealth: 100
   currentHealth: 0
+  player: {fileID: 1322784594}
 --- !u!114 &1813308718
 MonoBehaviour:
   m_ObjectHideFlags: 0
