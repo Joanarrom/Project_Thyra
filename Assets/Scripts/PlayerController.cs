@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        Destroy(this.gameObject);  
         Debug.Log("¡El jugador ha muerto!");
         // Implementar lógica de muerte aquí
     }
