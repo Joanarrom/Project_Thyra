@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -9,7 +10,7 @@ public class HealthBar : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public PlayerController player;
-
+    
     void Start()
     {
         currentHealth = maxHealth;
@@ -22,6 +23,8 @@ public class HealthBar : MonoBehaviour
         currentHealth = Mathf.Clamp(health, 0, maxHealth);
         slider.value = currentHealth;
     }
+
+    
 
    
 }
