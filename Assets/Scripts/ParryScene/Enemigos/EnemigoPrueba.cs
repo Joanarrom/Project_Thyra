@@ -26,7 +26,7 @@ public class EnemigoPrueba : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Verificamos si el objeto con el que colisionamos es el jugador
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+       TestEnergy player = collision.gameObject.GetComponent<TestEnergy>();
         
         if (player != null)
         {
