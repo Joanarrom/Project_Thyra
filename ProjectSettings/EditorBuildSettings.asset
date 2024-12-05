@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/MenuScene/MainMenu.unity
-    guid: be52da5e52a9e4247b2c52fc53a1bbf3
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/BossLevel/BossLevel.unity
     guid: b70c4db3d629d6e46a297f0693e7cda6
+  - enabled: 1
+    path: Assets/Scenes/Prueba_Parry/Prueba_Parry.unity
+    guid: 408c4ab23b3b6e149996e0d917536115
   m_configObjects: {}
