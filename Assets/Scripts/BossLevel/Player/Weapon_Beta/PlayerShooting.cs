@@ -5,35 +5,27 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     public GameObject projectilePrefab;
-    public Transform shootingPoint;  // Este es el punto desde donde el proyectil será disparado
+    public Transform shootingPoint;  //  punto desde donde el proyectil sera disparado (Asignar Empty GameObject)
     public float shootDelay = 0.8f;
 
     private float nextShootTime = 0f;
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextShootTime)
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextShootTime) //Al pulsar el click izq del mouse dispara un proyectil
         {
             nextShootTime = Time.time + shootDelay;
             ShootProjectile(shootingPoint.forward);  // Disparo normal
         }
 
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.Mouse0) && Time.time >= nextShootTime)
-        {
-            nextShootTime = Time.time + shootDelay;
-            ShootChargedProjectile(shootingPoint.forward);  // Disparo cargado
-        }
+        
     }
 
-    void ShootProjectile(Vector3 direction)
+    void ShootProjectile(Vector3 direction) //Instancia y dispara un proyectil cargado
     {
         GameObject projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-        projectile.GetComponent<Projectile>().shootingDirection = direction;  // Pasa la dirección correcta al proyectil
+        projectile.GetComponent<Projectile>().shootingDirection = direction;  // Pasa la direccion correcta al proyectil
     }
 
-    void ShootChargedProjectile(Vector3 direction)
-    {
-        GameObject projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-        projectile.GetComponent<Projectile>().shootingDirection = direction;  // Pasa la dirección correcta al proyectil
-    }
+    
 }

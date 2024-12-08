@@ -5,13 +5,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     
-     public float speed = 20f; // Velocidad del proyectil
+     public float speed = 20f; 
     private Rigidbody rb;
 
     // Dirección fija (en este caso, hacia adelante en el espacio mundial)
     public Vector3 shootingDirection = Vector3.forward;
 
-    public int damage = 20; // Cantidad de daño que el proyectil inflige
+    public int damage = 20; 
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
 
         if (rb != null)
         {
-            // Desactivamos la gravedad para evitar que el proyectil se desvíe hacia arriba o abajo
+            // Desactiva la gravedad para evitar que el proyectil se desvíe hacia arriba o abajo
             rb.useGravity = false;
 
             // Aseguramos de que el proyectil se dispare en la dirección correcta
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
             Debug.LogWarning("No se encontró Rigidbody en el proyectil.");
         }
 
-        // Destruir el proyectil después de un tiempo (si no ha colisionado)
+        
         Destroy(gameObject, 3f); 
     }
 

@@ -16,13 +16,13 @@ public class MenuOptions : MonoBehaviour
         SceneManager.LoadScene("");  
     }
 
-    // Método para abrir el menú de configuración (Settings)
+   
     public void OpenControls()
     {
         SceneManager.LoadScene("ControlsScene");  
     }
 
-    // Método para salir del juego
+    
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");

@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
 {
     void Start()
     {
-        // Asegúrate de que el cursor sea visible y no esté bloqueado
+        
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

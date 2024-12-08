@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Necesario para trabajar con Slider, Image, etc.
+using UnityEngine.UI; 
 
 public class PlayerUI : MonoBehaviour
 {
-    public Slider healthSlider; // Slider para la vida
-    public Slider energySlider; // Slider para la energía
+    public Slider healthSlider; 
+    public Slider energySlider; 
 
-    // Inicializar las barras de vida y energía
+    //  barras de vida y energía
     public void InitializeUI(int maxHealth, int currentHealth, int maxEnergy, int currentEnergy)
     {
         if (healthSlider != null)

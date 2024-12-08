@@ -5,18 +5,18 @@ using UnityEngine;
 public class HandDamageCollider : MonoBehaviour
 {
       private TestEnergy playerScript; // Script del jugador para aplicar el daño
-    private Animator bossAnimator; // Animator del boss para detectar qué animación está activa
+    private Animator bossAnimator; 
 
     void Start()
     {
-        // Obtener el Animator del boss al que pertenece esta mano
+        // Se obtiene el Animator del boss 
         bossAnimator = GetComponentInParent<Animator>();
     }
 
-    // Método que se llama cuando el jugador entra en el collider de la mano
-   private void OnTriggerEnter(Collider other)
+  
+   private void OnTriggerEnter(Collider other)  // Se ejecuta cuando el jugador entra en el collider de la mano
 {
-    // Verifica que el objeto que entra sea el jugador
+    // Verificar que el objeto tenga el Tag Player
     if (other.CompareTag("Player"))
     {
         playerScript = other.GetComponent<TestEnergy>(); // Obtiene el script del jugador
@@ -32,20 +32,20 @@ private void OnTriggerStay(Collider other)
 {
    if (other.CompareTag("Player") && playerScript != null)
     {
-        // Obtener el estado actual de la animación
+        // Obtener el State actual del animator
         AnimatorStateInfo stateInfo = bossAnimator.GetCurrentAnimatorStateInfo(0);
         
-        // Comprobar si la animación "Smash" o "Clap_Hit" está en ejecución
+        // Comprobar si el State es "Smash" o "Clap_Hit" 
         Debug.Log("Current animation: " + stateInfo.IsName("Smash"));
         
-        if (stateInfo.IsName("Smash"))  // Si la animación "Smash" está activa
+        if (stateInfo.IsName("Smash"))  
         {
-            playerScript.TakeDamage(2);  // Daño 2 para Smash
+            playerScript.TakeDamage(2);  
             Debug.Log("Jugador recibe 2 de daño por Smash.");
         }
-        else if (stateInfo.IsName("Clap_Hit"))  // Si la animación "Clap_Hit" está activa
+        else if (stateInfo.IsName("Clap_Hit"))  
         {
-            playerScript.TakeDamage(1);  // Daño 1 para Clap_Hit
+            playerScript.TakeDamage(1);  
             Debug.Log("Jugador recibe 1 de daño por Clap_Hit.");
         }
     }

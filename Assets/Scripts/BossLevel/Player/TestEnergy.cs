@@ -36,17 +36,17 @@ public class TestEnergy : MonoBehaviour
     private Transform target; // El objetivo al que nos vamos a fijar
     private bool isTargeting = false; // Si el jugador está fijado al objetivo
 
-    private void Start()
+    private void Start() //Obtiene la componente de CharacterController, y busca el Script de Player UI
     {
         characterController = GetComponent<CharacterController>();
-        playerUI = FindObjectOfType<PlayerUI>(); // Busca el script de UI en la escena
+        playerUI = FindObjectOfType<PlayerUI>(); 
 
-        playerUI?.InitializeUI(maxHealth, health, maxEnergy, energy); // Inicializa las barras
+        playerUI?.InitializeUI(maxHealth, health, maxEnergy, energy); 
     }
 
-    private void Update()
+    private void Update() //Gestión de las acciones del Player
     {
-        if (isParalyzed)
+        if (isParalyzed) // Energia = 0 se ejecuta isParalyzed
         {
             HandleParalysis();
             return;
@@ -82,7 +82,7 @@ public class TestEnergy : MonoBehaviour
                 TargetedRotation(); // Rotación hacia el enemigo fijado
             }
 
-            MovePlayer(); // Movimiento normal del jugador (moviéndose lateralmente, pero girando hacia el objetivo si está fijado)
+            MovePlayer(); // Movimiento normal del jugador ( si ha fiajdo a un obejito, rota sobre el eje Y de su objetivo)
         }
 
         if (cooldownTimer > 0f)
@@ -91,7 +91,8 @@ public class TestEnergy : MonoBehaviour
         }
     }
 
-    private void MovePlayer()
+    private void MovePlayer() //Controla el movimiento normal del jugador usando el CharacterController
+                              
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -118,7 +119,7 @@ public class TestEnergy : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    private void StartDash()
+    private void StartDash() //Inicia el Dash
     {
         isDashing = true;
         dashTimer = dashDuration;
@@ -127,13 +128,13 @@ public class TestEnergy : MonoBehaviour
 
         playerUI?.UpdateEnergy(energy);
 
-        if (energy <= 0)
+        if (energy <= 0) //Si la energia del Player llega a 0  se activa la paralisis
         {
             StartParalysis();
         }
     }
 
-    private void Dash()
+    private void Dash() //Ejeccución del moviemiento del Dash
     {
         // Cálculo de la dirección del dash
         Vector3 dashDirection = CalculateDashDirection();
@@ -146,13 +147,13 @@ public class TestEnergy : MonoBehaviour
         }
     }
 
-    private Vector3 CalculateDashDirection()
+    private Vector3 CalculateDashDirection() //Direccion del dash, basado en el movimiento del Player
     {
-        // Obtener la dirección del movimiento (horizontal y vertical)
+       
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Inicializar la dirección de movimiento
+        
         Vector3 dashDirection = Vector3.zero;
 
         // Si el jugador se está moviendo hacia adelante o hacia atrás
@@ -175,13 +176,13 @@ public class TestEnergy : MonoBehaviour
         return dashDirection;
     }
 
-    private void StartParalysis()
+    private void StartParalysis() //Activa la paralisis y configura su timer
     {
         isParalyzed = true;
         paralysisTimer = paralysisDuration;
     }
 
-    private void HandleParalysis()
+    private void HandleParalysis() //Reduce el tiempo del timer de la paralisis, al llegar a 0 se recupera una pequeña cantidad de energia
     {
         paralysisTimer -= Time.deltaTime;
 
@@ -193,7 +194,7 @@ public class TestEnergy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) //Aplicar el daño al jugador
     {
         if (damage <= 0)
         {
@@ -216,28 +217,28 @@ public class TestEnergy : MonoBehaviour
             Die();
         }
 
-        // Actualizar la UI
+        // Actualizar el PlayerUI
         if (FindObjectOfType<PlayerUI>() != null)
         {
             FindObjectOfType<PlayerUI>().UpdateHealth(health);
         }
     }
 
-    private void Die()
+    private void Die() // Cargar escena GameOver
     { 
     
-        SceneManager.LoadScene("GameOver"); // Regresa al menú principal
+        SceneManager.LoadScene("GameOver"); 
     
     }
 
-    public void RestoreHealth(int percentage)
+    public void RestoreHealth(int percentage) //Restaura la vida en funcion de su % de vida maxima (Cambiar esta funcion para mas adelante a un % fijo para incrementar la dificultad)
     {
         int restoreAmount = maxHealth * percentage / 100;
         health = Mathf.Clamp(health + restoreAmount, 0, maxHealth);
         playerUI?.UpdateHealth(health);
     }
 
-    public void RestoreEnergy(int percentage)
+    public void RestoreEnergy(int percentage) //Misma funcion que el de la vida (Aplicar el mismo cambio)
     {
         int restoreAmount = maxEnergy * percentage / 100;
         energy = Mathf.Clamp(energy + restoreAmount, 0, maxEnergy);
@@ -253,7 +254,7 @@ public class TestEnergy : MonoBehaviour
 
         foreach (Collider col in enemiesInRange)
         {
-            if (col.CompareTag("Enemy")) // Asumiendo que los enemigos están etiquetados como "Enemy"
+            if (col.CompareTag("Enemy")) // Identifica al Objeto mas cercano con el Tag "Enemy"
             {
                 float distance = Vector3.Distance(transform.position, col.transform.position);
                 if (distance < minDistance)
@@ -267,7 +268,7 @@ public class TestEnergy : MonoBehaviour
         target = closestEnemy;
     }
 
-    // Rotación hacia el enemigo fijado
+    // Rotación hacia el enemigo fijado y calcula la direccion hacia el enemigo
     private void TargetedRotation()
     {
         if (target != null)

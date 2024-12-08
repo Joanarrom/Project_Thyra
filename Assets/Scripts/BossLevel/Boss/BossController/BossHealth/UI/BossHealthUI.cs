@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
 
-
+//Este script solo actualiza la vida del Boss del Script BossHealth en la UI
 public class BossHealthUI : MonoBehaviour
 {
     public BossHealth bossHealth; 

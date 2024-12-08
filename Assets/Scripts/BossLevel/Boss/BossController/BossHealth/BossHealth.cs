@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 public class BossHealth : MonoBehaviour
 {
    
-    public int maxHealth = 1000; // Salud máxima del boss
-    public int currentHealth; // Salud actual del boss
+    public int maxHealth = 1000; 
+    public int currentHealth; 
 
     private void Start()
     {
-        currentHealth = maxHealth; // Inicializar la salud actual con la máxima
+        currentHealth = maxHealth; 
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage; // Restar la cantidad de daño
+        currentHealth -= damage; 
         if (currentHealth <= 0)
         {
              SceneManager.LoadScene("WinScene"); 
