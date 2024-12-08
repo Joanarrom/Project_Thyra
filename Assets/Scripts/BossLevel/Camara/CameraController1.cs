@@ -10,10 +10,10 @@ public class CameraController1 : MonoBehaviour
     public float distance = 5.0f;
     public float horizontalSensitivity = 100f;
     public float verticalSensitivity = 100f;
-    public float verticalOffset = 1.5f; // Altura de la cámara respecto al jugador
+    public float verticalOffset = 1.5f; // Altura de la camara respecto al jugador
 
-    private float pitch = 0.0f; // Ángulo vertical
-    private float yaw = 0.0f; // Ángulo horizontal
+    private float pitch = 0.0f; // Angulo vertical
+    private float yaw = 0.0f; // Angulo horizontal
 
     void Start()
     {
@@ -23,13 +23,13 @@ public class CameraController1 : MonoBehaviour
 
     void Update()
     {
-        // Rotación horizontal
+        // Rotacion horizontal
         yaw += Input.GetAxis("Mouse X") * horizontalSensitivity * Time.deltaTime;
 
-        // Rotación vertical (invirtiendo el eje Y)
+        // Rotacion vertical (invirtiendo el eje Y)
         pitch -= Input.GetAxis("Mouse Y") * verticalSensitivity * Time.deltaTime;
 
-        // Limitar el ángulo vertical
+        // Limitar el angulo vertical
         pitch = Mathf.Clamp(pitch, -30f, 60f);
     }
 
