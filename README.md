@@ -32,7 +32,7 @@ PW: 12345678
 [Enlace_Boss](https://www.canva.com/design/DAGWWjcGYZ8/hjJXcVhgaR6I-iKiALWH7w/view?utm_content=DAGWWjcGYZ8&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
 
-#ItchIO
+# ItchIO
 [EnlaceItchIO](https://bambooeater-01.itch.io/project-thyra)
 
 
