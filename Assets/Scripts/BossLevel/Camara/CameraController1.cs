@@ -8,8 +8,8 @@ public class CameraController1 : MonoBehaviour
 {
     public Transform target;
     public float distance = 5.0f;
-    public float horizontalSensitivity = 100f;
-    public float verticalSensitivity = 100f;
+    public float horizontalSensitivity = 30f;
+    public float verticalSensitivity = 30f;
     public float verticalOffset = 1.5f; // Altura de la camara respecto al jugador
 
     private float pitch = 0.0f; // Angulo vertical
