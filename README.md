@@ -25,7 +25,14 @@ PW: 12345678
  
 ![Blue and Black Gradient Anime Travel Instagram Post](https://github.com/user-attachments/assets/55766132-d7e5-4c82-9c94-7971618fbf78)
 
+
 # DiagramFlujo_Boss
 
 
 [Enlace_Boss](https://www.canva.com/design/DAGWWjcGYZ8/hjJXcVhgaR6I-iKiALWH7w/view?utm_content=DAGWWjcGYZ8&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+
+
+#ItchIO
+[EnlaceItchIO](https://bambooeater-01.itch.io/project-thyra)
+
+
