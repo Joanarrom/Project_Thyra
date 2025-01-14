@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     // Dirección fija (en este caso, hacia adelante en el espacio mundial)
     public Vector3 shootingDirection = Vector3.forward;
 
-    public int damage = 20; 
+    public int damage = 200; 
 
     void Start()
     {

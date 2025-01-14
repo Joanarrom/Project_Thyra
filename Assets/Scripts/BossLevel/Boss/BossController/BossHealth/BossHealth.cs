@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BossHealth : MonoBehaviour
 {
    
-    public int maxHealth = 1000; 
+    public int maxHealth = 100; 
     public int currentHealth; 
 
     private void Start()
