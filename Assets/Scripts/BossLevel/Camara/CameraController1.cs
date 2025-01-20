@@ -6,42 +6,56 @@ public class CameraController1 : MonoBehaviour
 
 
 {
-    public Transform target;
-    public float distance = 5.0f;
-    public float horizontalSensitivity = 30f;
-    public float verticalSensitivity = 30f;
-    public float verticalOffset = 1.5f; // Altura de la camara respecto al jugador
-
-    private float pitch = 0.0f; // Angulo vertical
-    private float yaw = 0.0f; // Angulo horizontal
-
-    void Start()
-    {
-        // Ocultar y bloquear el cursor en el centro de la pantalla
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void Update()
-    {
-        // Rotacion horizontal
-        yaw += Input.GetAxis("Mouse X") * horizontalSensitivity * Time.deltaTime;
-
-        // Rotacion vertical (invirtiendo el eje Y)
-        pitch -= Input.GetAxis("Mouse Y") * verticalSensitivity * Time.deltaTime;
-
-        // Limitar el angulo vertical
-        pitch = Mathf.Clamp(pitch, -30f, 60f);
-    }
-
-    void LateUpdate()
-    {
-        Vector3 direction = new Vector3(0, 0, +distance);
-        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
-
-        transform.position = target.position + Vector3.up * verticalOffset + rotation * direction;
-
-        transform.LookAt(target.position + Vector3.up * verticalOffset);
-    }
+   public Transform target; // El jugador que la cámara sigue
+       public float distance = 5.0f;
+       public float horizontalSensitivity = 150f;
+       public float verticalSensitivity = 100f;
+       public float verticalOffset = 1.5f; // Altura de la cámara respecto al jugador
+   
+       private float pitch = 0.0f; // Ángulo vertical
+       private float yaw = 0.0f; // Ángulo horizontal
+   
+       void Start()
+       {
+           // Ocultar y bloquear el cursor en el centro de la pantalla
+           Cursor.lockState = CursorLockMode.Locked;
+       }
+   
+       void Update()
+       {
+           // Rotación horizontal
+           yaw += Input.GetAxis("Mouse X") * horizontalSensitivity * Time.deltaTime;
+   
+           // Rotación vertical (invirtiendo el eje Y)
+           pitch -= Input.GetAxis("Mouse Y") * verticalSensitivity * Time.deltaTime;
+   
+           // Limitar el ángulo vertical
+           pitch = Mathf.Clamp(pitch, -30f, 60f);
+   
+           // Rotar el jugador hacia donde está mirando la cámara (solo en el plano horizontal)
+           if (target != null)
+           {
+               // Obtener la dirección en el plano XZ (horizontal) hacia donde mira la cámara
+               Vector3 forward = transform.forward;
+               forward.y = 0; // Ignorar componente vertical
+               forward.Normalize();
+   
+               // Aplicar la rotación al jugador
+               target.rotation = Quaternion.LookRotation(forward);
+           }
+       }
+   
+       void LateUpdate()
+       {
+           Vector3 direction = new Vector3(0, 0, +distance);
+           Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
+   
+           // Posicionar la cámara detrás del jugador
+           transform.position = target.position + Vector3.up * verticalOffset + rotation * direction;
+   
+           // Mirar hacia el objetivo
+           transform.LookAt(target.position + Vector3.up * verticalOffset);
+       }
 }
 
 
