@@ -18,7 +18,7 @@ PW: 12345678
 # GDD
 
 
-[EnlaceGDD](https://app.clickup.com/9012482371/v/e/8cjz4a3-92)
+[EnlaceGDD](https://docs.google.com/document/d/1hpl-MFEXdq52EjSe81P7L-Bt4kXPeH2x/edit?usp=sharing&ouid=118370037478351897870&rtpof=true&sd=true)
 
 
 
