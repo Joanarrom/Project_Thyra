@@ -31,4 +31,9 @@ public class ShootTutorial : MonoBehaviour
             activated = true; 
         }
     }
+
+    bool IsInTutorialScene()
+  {
+    return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "TutorialScene";
+  }
 }

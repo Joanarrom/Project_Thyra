@@ -8,7 +8,7 @@ public class MainMenuController : MonoBehaviour
    
     public void StartGame()
     {
-        SceneManager.LoadScene("BossLevel"); 
+        SceneManager.LoadScene("Tutorial"); 
 
     }
     public void OpenSettings()
