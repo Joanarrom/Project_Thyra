@@ -161,8 +161,8 @@ MonoBehaviour:
   rotationSpeed: 10
   cameraTransform: {fileID: 1634295941}
   dashSpeed: 15
-  dashDuration: 1
-  dashCooldown: 1
+  dashDuration: 0.5
+  dashCooldown: 2
   maxHealth: 300
   maxEnergy: 100
   health: 300

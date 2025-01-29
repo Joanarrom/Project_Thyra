@@ -11,6 +11,7 @@ public class TestEnergy : MonoBehaviour
     public float dashSpeed = 15f;
     public float dashDuration = 1f;
     public float dashCooldown = 1f;
+    public bool dashEnabled = false;
 
     public int maxHealth = 300; // Vida máxima
     public int maxEnergy = 100; // Energía máxima
@@ -46,13 +47,14 @@ public class TestEnergy : MonoBehaviour
 
     private void Update() //Gestión de las acciones del Player
     {
-        if (isParalyzed) // Energia = 0 se ejecuta isParalyzed
+        if (isParalyzed)
         {
             HandleParalysis();
             return;
         }
 
-        if (!isDashing && cooldownTimer <= 0f && energy >= dashEnergyCost && Input.GetKeyDown(KeyCode.LeftShift))
+        // Solo permitir Dash si está habilitado
+        if (dashEnabled && !isDashing && cooldownTimer <= 0f && energy >= dashEnergyCost && Input.GetKeyDown(KeyCode.LeftShift))
         {
             StartDash();
         }
@@ -63,26 +65,19 @@ public class TestEnergy : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Q)) // Fijarse al enemigo más cercano cuando se presiona "Q"
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 FindNearestEnemy();
                 isTargeting = target != null;
-                if (isTargeting)
-                {
-                    Debug.Log("Fijado al enemigo más cercano.");
-                }
-                else
-                {
-                    Debug.Log("No se encontró ningún enemigo.");
-                }
+                Debug.Log(isTargeting ? "Fijado al enemigo más cercano." : "No se encontró ningún enemigo.");
             }
 
             if (isTargeting)
             {
-                TargetedRotation(); // Rotación hacia el enemigo fijado
+                TargetedRotation();
             }
 
-            MovePlayer(); // Movimiento normal del jugador ( si ha fiajdo a un obejito, rota sobre el eje Y de su objetivo)
+            MovePlayer();
         }
 
         if (cooldownTimer > 0f)
