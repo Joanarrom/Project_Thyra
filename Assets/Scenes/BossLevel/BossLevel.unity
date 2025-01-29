@@ -163,6 +163,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashDuration: 0.5
   dashCooldown: 2
+  dashEnabled: 0
   maxHealth: 300
   maxEnergy: 100
   health: 300

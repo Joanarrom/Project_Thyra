@@ -24,7 +24,7 @@ public class ConsumableSystem : MonoBehaviour
         UpdateUI();
     }
 
-    private void Update() //Comprueba si el jugador presiona la tecla asignada para uno de los consumibles
+    private void Update() 
     {
         if (Input.GetKeyDown(useHealthKey) && healthConsumableCount > 0)
         {
@@ -37,7 +37,7 @@ public class ConsumableSystem : MonoBehaviour
         }
     }
 
-    private void UseHealthConsumable() //Consume un ítem de salud y restaura vida al jugador.
+    private void UseHealthConsumable() 
     {
         if (healthConsumableCount > 0)
         {
@@ -48,7 +48,7 @@ public class ConsumableSystem : MonoBehaviour
         }
     }
 
-    private void UseEnergyConsumable() //Consume un ítem de energía y restaura energía al jugador.
+    private void UseEnergyConsumable() 
     {
         if (energyConsumableCount > 0)
         {
@@ -59,7 +59,7 @@ public class ConsumableSystem : MonoBehaviour
         }
     }
 
-    private void UpdateUI() //Actualiza la cantidad de items disponibles en la UI.
+    private void UpdateUI() 
     {
         healthConsumableCountText.text = healthConsumableCount.ToString();
         energyConsumableCountText.text = energyConsumableCount.ToString();

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class DashUnlock : MonoBehaviour
 {
-    public TestEnergy playerScript; 
-
-    private void OnTriggerEnter(Collider other)
+   private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
-            playerScript.dashEnabled = true;
+            
+            GameManager.Instance.dashEnabled = true;
+            GameManager.Instance.SaveDashState();  
+
             Debug.Log("Dash Habilitado");
+
+            
             Destroy(gameObject);
         }
     }

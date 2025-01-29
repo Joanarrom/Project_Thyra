@@ -8,7 +8,7 @@ public class PlayerUI : MonoBehaviour
     public Slider healthSlider; 
     public Slider energySlider; 
 
-    //  barras de vida y energía
+    
     public void InitializeUI(int maxHealth, int currentHealth, int maxEnergy, int currentEnergy)
     {
         if (healthSlider != null)
@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    // Actualizar la barra de vida
+    
     public void UpdateHealth(int currentHealth)
     {
         if (healthSlider != null)
@@ -33,7 +33,7 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    // Actualizar la barra de energía
+   
     public void UpdateEnergy(int currentEnergy)
     {
         if (energySlider != null)
