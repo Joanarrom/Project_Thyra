@@ -15,7 +15,7 @@ public class PanelInteraction : MonoBehaviour
     private LabyrinthPuzzle labyrinthPuzzle;
     private bool isPuzzleActive = false;
 
-    private bool canInteract = false;  
+     
 
     private void Start()
     {
@@ -27,26 +27,11 @@ public class PanelInteraction : MonoBehaviour
         if (other.CompareTag("Player") && !isPuzzleActive)
         {
             Debug.Log("Presiona 'E' para interactuar con el panel.");
-            canInteract = true;  
+            
+            ActivatePuzzle(); 
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            canInteract = false;  
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player") && canInteract && Input.GetKeyDown(KeyCode.E) && !isPuzzleActive)
-        {
-            ActivatePuzzle();  
-        }
-    }
-
+    
     public void ActivatePuzzle()
     {
         isPuzzleActive = true;
