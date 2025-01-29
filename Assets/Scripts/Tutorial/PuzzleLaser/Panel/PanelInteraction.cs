@@ -5,15 +5,17 @@ using UnityEngine;
 public class PanelInteraction : MonoBehaviour
 {
    
-     public Camera mainCamera; 
-    public Camera puzzleCamera; 
-    public GameObject player; 
-    public GameObject lasers; 
-    public GameObject puzzle; 
-    public Transform ballStartPosition; 
-    public GameObject ball; 
-    private LabyrinthPuzzle labyrinthPuzzle; 
+    public Camera mainCamera;
+    public Camera puzzleCamera;
+    public GameObject player;
+    public GameObject lasers;
+    public GameObject puzzle;
+    public Transform ballStartPosition;
+    public GameObject ball;
+    private LabyrinthPuzzle labyrinthPuzzle;
     private bool isPuzzleActive = false;
+
+    private bool canInteract = false;  
 
     private void Start()
     {
@@ -25,15 +27,23 @@ public class PanelInteraction : MonoBehaviour
         if (other.CompareTag("Player") && !isPuzzleActive)
         {
             Debug.Log("Presiona 'E' para interactuar con el panel.");
+            canInteract = true;  
         }
-       
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canInteract = false;  
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && !isPuzzleActive)
+        if (other.CompareTag("Player") && canInteract && Input.GetKeyDown(KeyCode.E) && !isPuzzleActive)
         {
-            ActivatePuzzle();
+            ActivatePuzzle();  
         }
     }
 
@@ -41,17 +51,17 @@ public class PanelInteraction : MonoBehaviour
     {
         isPuzzleActive = true;
 
-       
+        
         mainCamera.gameObject.SetActive(false);
         puzzleCamera.gameObject.SetActive(true);
 
-       
+        
         player.GetComponent<TestEnergy>().enabled = false;
 
-        
+       
         ResetBallPosition();
 
-        
+       
         puzzle.SetActive(true);
 
         
@@ -65,7 +75,7 @@ public class PanelInteraction : MonoBehaviour
     {
         isPuzzleActive = false;
 
-       
+        
         puzzleCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
 
@@ -75,7 +85,7 @@ public class PanelInteraction : MonoBehaviour
        
         puzzle.SetActive(false);
 
-        
+       
         lasers.SetActive(false);
 
         
