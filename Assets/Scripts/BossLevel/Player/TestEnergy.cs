@@ -86,7 +86,7 @@ public class TestEnergy : MonoBehaviour
         }
     }
 
-    private void MovePlayer() //Controla el movimiento normal del jugador usando el CharacterController
+    private void MovePlayer() 
                               
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -95,13 +95,13 @@ public class TestEnergy : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            // Movimiento normal
+            
             Vector3 moveDir = cameraTransform.TransformDirection(direction);
-            moveDir.y = 0f; // Asegurarse de que no se mueva hacia arriba o hacia abajo
+            moveDir.y = 0f; 
             characterController.Move(moveDir * moveSpeed * Time.deltaTime);
         }
 
-        // Aplicar gravedad
+        
         if (!characterController.isGrounded)
         {
             velocity.y += Physics.gravity.y * Time.deltaTime;
@@ -114,7 +114,7 @@ public class TestEnergy : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    private void StartDash() //Inicia el Dash
+    private void StartDash() 
     {
         isDashing = true;
         dashTimer = dashDuration;
@@ -123,15 +123,15 @@ public class TestEnergy : MonoBehaviour
 
         playerUI?.UpdateEnergy(energy);
 
-        if (energy <= 0) //Si la energia del Player llega a 0  se activa la paralisis
+        if (energy <= 0)
         {
             StartParalysis();
         }
     }
 
-    private void Dash() //Ejeccución del moviemiento del Dash
+    private void Dash() 
     {
-        // Cálculo de la dirección del dash
+        
         Vector3 dashDirection = CalculateDashDirection();
         characterController.Move(dashDirection * dashSpeed * Time.deltaTime);
         dashTimer -= Time.deltaTime;
@@ -142,7 +142,7 @@ public class TestEnergy : MonoBehaviour
         }
     }
 
-    private Vector3 CalculateDashDirection() //Direccion del dash, basado en el movimiento del Player
+    private Vector3 CalculateDashDirection() 
     {
        
         float horizontal = Input.GetAxis("Horizontal");
@@ -151,33 +151,33 @@ public class TestEnergy : MonoBehaviour
         
         Vector3 dashDirection = Vector3.zero;
 
-        // Si el jugador se está moviendo hacia adelante o hacia atrás
-        if (vertical > 0) // Hacia adelante
+        
+        if (vertical > 0) 
         {
             dashDirection = transform.forward;
         }
-        else if (vertical < 0) // Hacia atrás
+        else if (vertical < 0) 
         {
             dashDirection = -transform.forward;
         }
-        // Si el jugador se mueve lateralmente (izquierda o derecha)
+        
         else if (horizontal != 0)
         {
             dashDirection = transform.right * horizontal;
         }
 
-        dashDirection.y = 0f; // Asegurarse de que el dash sea solo horizontal
+        dashDirection.y = 0f; 
 
         return dashDirection;
     }
 
-    private void StartParalysis() //Activa la paralisis y configura su timer
+    private void StartParalysis() 
     {
         isParalyzed = true;
         paralysisTimer = paralysisDuration;
     }
 
-    private void HandleParalysis() //Reduce el tiempo del timer de la paralisis, al llegar a 0 se recupera una pequeña cantidad de energia
+    private void HandleParalysis() 
     {
         paralysisTimer -= Time.deltaTime;
 
@@ -189,7 +189,7 @@ public class TestEnergy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage) //Aplicar el daño al jugador
+    public void TakeDamage(int damage) 
     {
         if (damage <= 0)
         {
@@ -208,39 +208,39 @@ public class TestEnergy : MonoBehaviour
 
         if (health <= 0)
         {
-            health = 0; // Aseguramos que la salud no sea negativa
+            health = 0; 
             Die();
         }
 
-        // Actualizar el PlayerUI
+       
         if (FindObjectOfType<PlayerUI>() != null)
         {
             FindObjectOfType<PlayerUI>().UpdateHealth(health);
         }
     }
 
-    private void Die() // Cargar escena GameOver
+    private void Die() 
     { 
     
         SceneManager.LoadScene("GameOver"); 
     
     }
 
-    public void RestoreHealth(int percentage) //Restaura la vida en funcion de su % de vida maxima (Cambiar esta funcion para mas adelante a un % fijo para incrementar la dificultad)
+    public void RestoreHealth(int percentage) 
     {
         int restoreAmount = maxHealth * percentage / 100;
         health = Mathf.Clamp(health + restoreAmount, 0, maxHealth);
         playerUI?.UpdateHealth(health);
     }
 
-    public void RestoreEnergy(int percentage) //Misma funcion que el de la vida (Aplicar el mismo cambio)
+    public void RestoreEnergy(int percentage) 
     {
         int restoreAmount = maxEnergy * percentage / 100;
         energy = Mathf.Clamp(energy + restoreAmount, 0, maxEnergy);
         playerUI?.UpdateEnergy(energy);
     }
 
-    // Buscar al enemigo más cercano
+    
     private void FindNearestEnemy()
     {
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, targetingRange);
@@ -249,7 +249,7 @@ public class TestEnergy : MonoBehaviour
 
         foreach (Collider col in enemiesInRange)
         {
-            if (col.CompareTag("Enemy")) // Identifica al Objeto mas cercano con el Tag "Enemy"
+            if (col.CompareTag("Enemy")) 
             {
                 float distance = Vector3.Distance(transform.position, col.transform.position);
                 if (distance < minDistance)
@@ -263,13 +263,13 @@ public class TestEnergy : MonoBehaviour
         target = closestEnemy;
     }
 
-    // Rotación hacia el enemigo fijado y calcula la direccion hacia el enemigo
+    
     private void TargetedRotation()
     {
         if (target != null)
         {
             Vector3 targetDirection = target.position - transform.position;
-            targetDirection.y = 0; // Ignorar la variación en la altura
+            targetDirection.y = 0; 
 
             if (targetDirection.magnitude >= 0.1f)
             {

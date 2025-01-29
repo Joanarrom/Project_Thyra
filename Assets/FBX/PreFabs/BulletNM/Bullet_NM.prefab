@@ -127,4 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   shootingDirection: {x: 0, y: 0, z: 1}
-  damage: 10
+  damage: 30
