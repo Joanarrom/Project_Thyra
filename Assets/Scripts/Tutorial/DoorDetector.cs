@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DoorDetector : MonoBehaviour
 {
-   public Transform door; // Referencia al transform de la puerta que se va a mover
-    public Vector3 openPositionOffset; // Offset relativo a la posición inicial para cuando la puerta está abierta
-    public float speed = 2f; // Velocidad de deslizamiento de la puerta
-    public float delayToClose = 1f; // Tiempo de espera antes de cerrar
+   public Transform door; 
+    public Vector3 openPositionOffset; 
+    public float speed = 2f;
+    public float delayToClose = 1f; 
 
-    private Vector3 closedPosition; // Posición inicial de la puerta
-    private Vector3 openPosition; // Posición final de la puerta
-    private Coroutine doorCoroutine; // Corrutina activa para mover la puerta
-    private bool isPlayerDetected = false; // Verifica si el jugador está en el trigger
+    private Vector3 closedPosition; 
+    private Vector3 openPosition; 
+    private Coroutine doorCoroutine; 
+    private bool isPlayerDetected = false; 
 
     private void Start()
     {
@@ -22,37 +22,37 @@ public class DoorDetector : MonoBehaviour
             return;
         }
 
-        // Define las posiciones de la puerta
+        
         closedPosition = door.position;
         openPosition = closedPosition + openPositionOffset;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Detecta si el jugador entra en el trigger
+        if (other.CompareTag("Player")) 
         {
             isPlayerDetected = true;
-            if (doorCoroutine != null) StopCoroutine(doorCoroutine); // Detiene cualquier corrutina activa
-            doorCoroutine = StartCoroutine(MoveDoor(openPosition)); // Abre la puerta
+            if (doorCoroutine != null) StopCoroutine(doorCoroutine); 
+            doorCoroutine = StartCoroutine(MoveDoor(openPosition)); 
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) // Detecta si el jugador sale del trigger
+        if (other.CompareTag("Player")) 
         {
             isPlayerDetected = false;
-            StartCoroutine(CloseDoorWithDelay()); // Espera un tiempo antes de cerrar la puerta
+            StartCoroutine(CloseDoorWithDelay());
         }
     }
 
     private IEnumerator CloseDoorWithDelay()
     {
-        yield return new WaitForSeconds(delayToClose); // Espera antes de cerrar la puerta
-        if (!isPlayerDetected) // Asegúrate de que el jugador no esté en el trigger
+        yield return new WaitForSeconds(delayToClose);
+        if (!isPlayerDetected) 
         {
-            if (doorCoroutine != null) StopCoroutine(doorCoroutine); // Detiene cualquier corrutina activa
-            doorCoroutine = StartCoroutine(MoveDoor(closedPosition)); // Cierra la puerta
+            if (doorCoroutine != null) StopCoroutine(doorCoroutine); 
+            doorCoroutine = StartCoroutine(MoveDoor(closedPosition)); 
         }
     }
 
@@ -60,9 +60,9 @@ public class DoorDetector : MonoBehaviour
     {
         while (Vector3.Distance(door.position, targetPosition) > 0.01f)
         {
-            door.position = Vector3.Lerp(door.position, targetPosition, Time.deltaTime * speed); // Mueve la puerta suavemente
+            door.position = Vector3.Lerp(door.position, targetPosition, Time.deltaTime * speed); 
             yield return null;
         }
-        door.position = targetPosition; // Asegura que la puerta termine exactamente en su posición objetivo
+        door.position = targetPosition; 
     }
 }
