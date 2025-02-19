@@ -35,4 +35,11 @@ PW: 12345678
 # ItchIO
 [EnlaceItchIO](https://bambooeater-01.itch.io/project-thyra)
 
+# Formulario
+[EnlaceFormulario](https://docs.google.com/forms/d/e/1FAIpQLSeCC_DoBqQQjHYeJCOlRSafTIkq6HnngzHS26sx_qwBBtWirw/viewform?usp=dialog)
+
+#Build
+
+[EnlaceBuild](https://drive.google.com/drive/folders/1rNRmnsJiutYaNbQwassF9YYoRNHrWJWQ?usp=sharing)
+
 
