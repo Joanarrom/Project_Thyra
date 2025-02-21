@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -53,3 +53,4 @@ public class Register : MonoBehaviour
         Debug.Log("Creat usuari: " + registeredUser.Nom + " " + registeredUser.Email);
     }
 }
+*/
