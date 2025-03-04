@@ -6,6 +6,6 @@ using UnityEngine;
 
 public class NetworkingDataScriptableObject : ScriptableObject
 {
-    public string apiUrl = "https://api-zombies-axgcdcasenevhjcj.spaincentral-01.azurewebsites.net/api";
+    public string apiUrl = "https://api-project-thyra-ffg6emf0hebxfncg.spaincentral-01.azurewebsites.net/api";
     public string token;
 }

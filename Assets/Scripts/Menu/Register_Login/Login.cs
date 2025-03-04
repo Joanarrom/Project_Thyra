@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -11,7 +11,11 @@ using UnityEngine.Networking;
 
 public class Login : MonoBehaviour
 {
-    
+    public TMP_InputField userInput;
+    public TMP_InputField  passwordInput;
+    public TMP_InputField emailInput;
+    public NetworkingDataScriptableObject loginDataSO;
+    private GameObject usuari = null;
     public void login()
     {
         Debug.Log("Login...");
@@ -24,12 +28,12 @@ public class Login : MonoBehaviour
         {
             UnityWebRequest httpClient = new UnityWebRequest();
             httpClient.method = UnityWebRequest.kHttpVerbPOST;
-            httpClient.uri = loginDataSO.apiUrl + "/Auth/Login";
+            httpClient.url = loginDataSO.apiUrl + "/Auth/Login";
             httpClient.SetRequestHeader("Content-Type", "application/json");
             httpClient.SetRequestHeader("Accept", "application/json");
 
             RegisterUserDTO loginDataUsuari = new RegisterUserDTO();
-            loginDataUsuari.Nom = "prova"; // IMPORTANT! Can NOT be null!
+            loginDataUsuari.Nom = userInput.text; // IMPORTANT! Can NOT be null!
             loginDataUsuari.Email = emailInput.text;
             loginDataUsuari.Password = passwordInput.text;
 
@@ -40,8 +44,7 @@ public class Login : MonoBehaviour
 
             yield return httpClient.SendWebRequest();
 
-            if (httpClient.result == UnityWebRequest.Result.ConnectionError || 
-                httpClient.result == UnityWebRequest.Result.ProtocolError)
+            if (httpClient.result == UnityWebRequest.Result.ConnectionError || httpClient.result == UnityWebRequest.Result.ProtocolError)
             {
                 throw new Exception("Login: " + httpClient.error);
             }
@@ -55,4 +58,3 @@ public class Login : MonoBehaviour
         }
     }
 }
-*/

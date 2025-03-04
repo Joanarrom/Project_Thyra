@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -11,13 +11,23 @@ using UnityEngine.Networking;
 
 public class Register : MonoBehaviour
 {
-    
+    public TMP_InputField nomInput;
+    public TMP_InputField passwordInput;
+    public TMP_InputField  emailInput;
+    public NetworkingDataScriptableObject loginDataSO;
     public void register()
+    {
+        Debug.Log("Register...");
+        StartCoroutine(TryRegister());
+    }
+
+    
+    private IEnumerator TryRegister()
     {
         Debug.Log("Register...");
         UnityWebRequest httpRequest = new UnityWebRequest();
         httpRequest.method = UnityWebRequest.kHttpVerbPOST;
-        httpRequest.uri = loginDataSO.apiUrl + "/Auth/Register";
+        httpRequest.url = loginDataSO.apiUrl + "/Auth/Register";
         httpRequest.SetRequestHeader("Content-Type", "application/json");
         httpRequest.SetRequestHeader("Accept", "application/json");
 
@@ -31,18 +41,14 @@ public class Register : MonoBehaviour
         httpRequest.uploadHandler = new UploadHandlerRaw(dataToSend);
         httpRequest.downloadHandler = new DownloadHandlerBuffer();
 
-        httpRequest.SendWebRequest();
 
-        while (!httpRequest.isDone)
-        {
-            ;
-        }
 
-        if (httpRequest.result == UnityWebRequest.Result.ConnectionError || 
-            httpRequest.result == UnityWebRequest.Result.ProtocolError)
+        yield return httpRequest.SendWebRequest();
+        
+        if (httpRequest.result == UnityWebRequest.Result.ConnectionError || httpRequest.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.Log("Error: " + httpRequest.error);
-            return;
+            
         }
 
         Debug.Log(httpRequest.result.ToString());
@@ -53,4 +59,3 @@ public class Register : MonoBehaviour
         Debug.Log("Creat usuari: " + registeredUser.Nom + " " + registeredUser.Email);
     }
 }
-*/
