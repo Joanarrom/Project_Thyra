@@ -25,7 +25,7 @@ public class Canvas_Classification : MonoBehaviour
    private IEnumerator GetClassification()
    {
       UnityWebRequest httpRequest = UnityWebRequest.Get(loginDataSO.apiUrl + "/LeaderboardL1/GetClassificationLevel1");
-      //www.SetRequestHeader("Content-Type", "application/json");
+      
       httpRequest.SetRequestHeader("Accept", "application/json");
       httpRequest.SetRequestHeader("Authorization", "bearer " + loginDataSO.token);
 
@@ -36,16 +36,16 @@ public class Canvas_Classification : MonoBehaviour
          throw new Exception(httpRequest.error);
       }
 
-      //Debug.Log(httpRequest.downloadHandler.text);
+      
 
       var classification = JsonConvert.DeserializeObject<List<GameLevel1Dto>>(httpRequest.downloadHandler.text);
-      //Debug.Log(classification[0].ToString());
+      
 
       foreach (var gameL1Data in classification)
       {
          GameObject newLine = Instantiate(listTile, leaderboardPanel.transform);
          newLine.GetComponent<TextMeshProUGUI>().text = gameL1Data.NomUsuari + "\t" + gameL1Data.Segons;
-         //Debug.Log(gameL1Data.nomUsuari + " " + gameL1Data.segons + "\n");
+         
       }
    }
    
