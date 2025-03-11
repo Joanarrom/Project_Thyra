@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameLevel1Dto
 {
-    public int Id { get; set; }
-    public int UsuariId { get; set; }
-    public string NomUsuari { get; set; } = string.Empty;
-    public int Segons { get; set; }
-    public string Creat { get; set; } = string.Empty;
-    public string Modificat { get; set; } = string.Empty;
+    public int id { get; set; }
+    public int userId { get; set; }
+    public string nomUsuari { get; set; } = string.Empty;
+    public int seconds { get; set; }
+    public string createdAt { get; set; } = string.Empty;
+    public string updatedAt { get; set; } = string.Empty;
 }
