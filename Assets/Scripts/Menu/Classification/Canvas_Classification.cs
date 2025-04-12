@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -44,9 +44,10 @@ public class Canvas_Classification : MonoBehaviour
       foreach (var gameL1Data in classification)
       {
          GameObject newLine = Instantiate(listTile, leaderboardPanel.transform);
-         newLine.GetComponent<TextMeshProUGUI>().text = gameL1Data.NomUsuari + "\t" + gameL1Data.Segons;
+         newLine.GetComponent<TextMeshProUGUI>().text = gameL1Data.nomUsuari + "\t" + gameL1Data.seconds;
          
       }
    }
    
 }
+*/

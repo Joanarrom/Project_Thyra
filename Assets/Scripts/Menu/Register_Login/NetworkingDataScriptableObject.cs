@@ -6,6 +6,6 @@ using UnityEngine;
 
 public class NetworkingDataScriptableObject : ScriptableObject
 {
-    public string apiUrl = "https://api-project-thyra-ffg6emf0hebxfncg.spaincentral-01.azurewebsites.net/api";
-    public string token;
+    public string apiUrl = "https://phpstack-1076337-5399863.cloudwaysapps.com/api";
+    public string token = "UN055LmAO0OohtenSN8h0y4gB40wsRTYVZq1OkEOOpIukOXrxjKjeUV7Ftbq";
 }

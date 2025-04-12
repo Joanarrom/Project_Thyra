@@ -8,6 +8,7 @@ public class BossHealth : MonoBehaviour
    
     public int maxHealth = 100; 
     public int currentHealth; 
+    public int puntosPorMatar = 500; 
 
     private void Start()
     {
@@ -19,7 +20,8 @@ public class BossHealth : MonoBehaviour
         currentHealth -= damage; 
         if (currentHealth <= 0)
         {
-             SceneManager.LoadScene("WinScene"); 
+             SceneManager.LoadScene("ScoreFinal"); 
+               ScoreManager.Instance.AddScore(puntosPorMatar);
         }
     }
 
