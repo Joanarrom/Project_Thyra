@@ -8,7 +8,7 @@ public class BossController : MonoBehaviour
     public GameObject impactMarkerPrefab;
     public float attackInterval = 5f;
     public float markerDuration = 1.5f;
-    public int totalPowerSources = 3;
+    public int totalPowerSources = 4;
     public Transform target; // El jugador
 
     private float timer;

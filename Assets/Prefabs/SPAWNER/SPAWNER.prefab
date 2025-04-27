@@ -1285,6 +1285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 791261358452361469}
   - component: {fileID: 1861526137681009425}
+  - component: {fileID: 7690270287941281917}
   m_Layer: 0
   m_Name: SPAWNER
   m_TagString: Untagged
@@ -1325,6 +1326,23 @@ MonoBehaviour:
   currentTime: 0
   vertexMotionScale: 1
   asyncLoad: 1
+--- !u!114 &7690270287941281917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536455787726296972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4225c3980f652468cc693f0d7fdc0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6161247762399677487, guid: e9edef7070c099749b80ac8a5f29526d, type: 3}
+  maxEnemies: 4
+  spawnInterval: 5
+  patrolPoints: []
+  detectionRadius: 10
 --- !u!1 &3624348511856432504
 GameObject:
   m_ObjectHideFlags: 0

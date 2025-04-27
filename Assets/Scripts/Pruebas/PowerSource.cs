@@ -6,7 +6,7 @@ public class PowerSource : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        // Simula daño, podrías agregar vida si quieres
+        
         boss.PowerSourceDestroyed();
         Destroy(gameObject);
     }
