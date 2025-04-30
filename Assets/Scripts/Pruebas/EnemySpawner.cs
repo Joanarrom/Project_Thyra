@@ -16,16 +16,23 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (isDestroyed) return;
+       if (isDestroyed) return;
 
+    // Eliminar enemigos muertos de la lista
+    activeEnemies.RemoveAll(e => e == null);
+
+    // Solo contar el tiempo si todavía se puede spawnear
+    if (activeEnemies.Count < maxEnemies)
+    {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval && activeEnemies.Count < maxEnemies)
+
+        if (spawnTimer >= spawnInterval)
         {
             SpawnEnemy();
             spawnTimer = 0f;
         }
+    }
 
-        activeEnemies.RemoveAll(e => e == null);
     }
 
     void SpawnEnemy()

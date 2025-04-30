@@ -24,14 +24,19 @@ public class EnemyAI : MonoBehaviour
         this.spawner = spawner;
         this.patrolPoints = patrolPoints;
         this.detectionRadius = detectionRadius;
+
+         player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        GoToNextPatrolPoint();
     }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        /*player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        GoToNextPatrolPoint();
+        GoToNextPatrolPoint(); */
     }
 
     void Update()
