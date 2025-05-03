@@ -943,10 +943,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6830542946038748821}
-  - component: {fileID: 5088668070519633417}
   - component: {fileID: 6164000154433372479}
   - component: {fileID: 4498626400186716089}
   - component: {fileID: 2907986726296715803}
+  - component: {fileID: 4560423701591260731}
+  - component: {fileID: 7556305019209213934}
   m_Layer: 0
   m_Name: Ant_Army@T-Pose
   m_TagString: Untagged
@@ -963,7 +964,7 @@ Transform:
   m_GameObject: {fileID: 6161247762399677487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.035, y: 0.035, z: 0.035}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 5813852031046362421}
   - {fileID: 7654646426038840246}
@@ -973,22 +974,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5088668070519633417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6161247762399677487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5ec8da31fa9414b93bbf52645995a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolWaitTime: 2
-  attackDistance: 2
-  moveSpeed: 2
-  chaseSpeed: 4
 --- !u!54 &6164000154433372479
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1036,10 +1021,49 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.051752284
+  m_Radius: 0.08
   m_Height: 0.49489567
   m_Direction: 1
   m_Center: {x: 0, y: 0.252552, z: -0.0032090782}
+--- !u!195 &4560423701591260731
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6161247762399677487}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7556305019209213934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6161247762399677487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5ec8da31fa9414b93bbf52645995a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolWaitTime: 2
+  attackDistance: 2
+  moveSpeed: 1
+  chaseSpeed: 2.5
+  damage: 100
 --- !u!1 &6216462269268701044
 GameObject:
   m_ObjectHideFlags: 0

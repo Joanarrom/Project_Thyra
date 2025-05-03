@@ -107,7 +107,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrainIntensity: 0.092
+    - _GrainIntensity: 0.069
     - _GrayscaleIntensity: 1
     - _Metallic: 0
     - _NoiseIntensity: 0.54

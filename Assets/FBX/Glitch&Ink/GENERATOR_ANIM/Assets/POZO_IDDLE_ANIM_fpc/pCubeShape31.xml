@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Autodesk_Cache_File>
+  <cacheType Type="OneFile" Format="mcx"/>
+  <time Range="0-9000"/>
+  <cacheTimePerFrame TimePerFrame="250"/>
+  <cacheVersion Version="2.0"/>
+  <extra>C:/Users/joan0/Documents/maya/projects/Character/scenes/POZO.mb</extra>
+  <extra>maya 2024</extra>
+  <extra>joan0</extra>
+  <Channels>
+    <channel0 ChannelName="PozoPetrolero1|Valla|pCube31|pCubeShape31" ChannelType="FloatVectorArray" ChannelInterpretation="positions" SamplingType="Regular" SamplingRate="250" StartTime="0" EndTime="9000"/>
+    <channel1 ChannelName="PozoPetrolero1|Valla|pCube31|pCubeShape31_normals" ChannelType="FloatVectorArray" ChannelInterpretation="normals" SamplingType="Regular" SamplingRate="250" StartTime="0" EndTime="9000"/>
+  </Channels>
+</Autodesk_Cache_File>

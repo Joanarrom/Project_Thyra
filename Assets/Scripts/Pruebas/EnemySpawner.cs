@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+  public GameObject enemyPrefab;
     public int maxEnemies = 4;
     public float spawnInterval = 5f;
     public Transform[] patrolPoints;
@@ -16,30 +16,29 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-       if (isDestroyed) return;
+        if (isDestroyed) return;
 
-    // Eliminar enemigos muertos de la lista
-    activeEnemies.RemoveAll(e => e == null);
+        // Eliminar enemigos muertos de la lista
+        activeEnemies.RemoveAll(e => e == null);
 
-    // Solo contar el tiempo si todavía se puede spawnear
-    if (activeEnemies.Count < maxEnemies)
-    {
-        spawnTimer += Time.deltaTime;
-
-        if (spawnTimer >= spawnInterval)
+        // Solo contar el tiempo si todavía se puede spawnear
+        if (activeEnemies.Count < maxEnemies)
         {
-            SpawnEnemy();
-            spawnTimer = 0f;
-        }
-    }
+            spawnTimer += Time.deltaTime;
 
+            if (spawnTimer >= spawnInterval)
+            {
+                SpawnEnemy();
+                spawnTimer = 0f;
+            }
+        }
     }
 
     void SpawnEnemy()
     {
         GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         EnemyAI ai = enemy.GetComponent<EnemyAI>();
-        ai.Setup(this, patrolPoints, detectionRadius);
+        ai.Setup(this, patrolPoints, detectionRadius);  // Pasamos 3 parámetros
         activeEnemies.Add(enemy);
     }
 

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FireballMeteor : MonoBehaviour
 {
-    public float fallSpeed = 20f;
-    public GameObject explosionPrefab;
+      public float fallSpeed = 20f;
+    public int damage = 100; // Daño que aplicará al jugador
 
     void Update()
     {
@@ -11,15 +11,21 @@ public class FireballMeteor : MonoBehaviour
 
         if (transform.position.y <= 0.2f)
         {
-            Explode();
+            Destroy(gameObject);
         }
     }
 
-    void Explode()
+    // Detectar colisión con el jugador
+    void OnTriggerEnter(Collider other)
     {
-        if (explosionPrefab)
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-        Destroy(gameObject);
+        if (other.CompareTag("Player"))
+        {
+            ThirdPersonController player = other.GetComponent<ThirdPersonController>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            }
+            Destroy(gameObject); // Destruir el proyectil al impactar
+        }
     }
 }

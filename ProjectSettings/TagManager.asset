@@ -15,8 +15,8 @@ TagManager:
   - LayerMask
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - enemyLayers
   - 
   - 
   - 
