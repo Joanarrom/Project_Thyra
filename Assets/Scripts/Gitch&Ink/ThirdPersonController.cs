@@ -23,7 +23,7 @@ public class ThirdPersonController : MonoBehaviour
     [Header("Energía")]
     public float maxEnergy = 100f;
     public float energyDepletionRate = 4f;
-    public float energyPerKill = 25f;
+    public float energyPerKill = 250f;
     public float criticalEnergyThreshold = 20f;
     public Color criticalEnergyColor = Color.red;
 
@@ -199,17 +199,14 @@ public class ThirdPersonController : MonoBehaviour
     public void OnWeaponHit(Collider other)
     {
         if(!isAttacking || hitTargets.Contains(other.gameObject)) return;
-        
-        hitTargets.Add(other.gameObject);
-        
-        // Dañar enemigos
-        if(other.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
+
+     hitTargets.Add(other.gameObject);
+
+     if(other.TryGetComponent<EnemyAI>(out EnemyAI enemyAI))
         {
-            enemyHealth.TakeDamage(lightAttackDamage);
-            if(enemyHealth.CurrentHealth <= 0) OnEnemyKilled();
+          enemyAI.TakeDamage(lightAttackDamage);
         }
-        // Dañar Power Sources
-        else if(other.TryGetComponent<PowerSource>(out PowerSource powerSource))
+     else if(other.TryGetComponent<PowerSource>(out PowerSource powerSource))
         {
             powerSource.TakeDamage(lightAttackDamage);
         }

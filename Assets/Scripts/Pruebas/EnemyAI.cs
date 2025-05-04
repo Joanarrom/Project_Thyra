@@ -4,26 +4,38 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Patrullaje y detección")]
     public float patrolWaitTime = 2f;
-    public float attackDistance = 2f;
+    public float detectionRadius = 10f;
+    public Transform[] patrolPoints;
+
+    [Header("Movimiento")]
     public float moveSpeed = 2f;
     public float chaseSpeed = 4f;
-    public int damage = 10;
 
+    [Header("Ataque")]
+    public float attackDistance = 2f;
+    public int damage = 10;
+    public float attackCooldown = 2f;
+    private float lastAttackTime;
+
+    [Header("Vida")]
     public int maxHealth = 100;
     private int currentHealth;
 
     private Transform player;
     private NavMeshAgent agent;
     private Animator animator;
+
     private bool isChasing;
     private bool isAttacking;
     private bool waiting;
     private int currentPatrolIndex;
-    private Transform[] patrolPoints;
-    private float detectionRadius;
 
-    private bool isDead = false;
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     public void Setup(EnemySpawner spawner, Transform[] patrolPoints, float detectionRadius)
     {
@@ -32,17 +44,25 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
         GoToNextPatrolPoint();
     }
 
     void Update()
     {
-        if (isDead) return;
+        if (player == null || agent == null) return;
 
-        if (Vector3.Distance(transform.position, player.position) <= detectionRadius)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= detectionRadius)
         {
-            ChasePlayer();
+            if (distanceToPlayer <= attackDistance && !isAttacking && Time.time - lastAttackTime >= attackCooldown)
+            {
+                StartCoroutine(AttackPlayer());
+            }
+            else
+            {
+                ChasePlayer();
+            }
         }
         else if (!isChasing && !waiting && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -52,11 +72,6 @@ public class EnemyAI : MonoBehaviour
         if (!isAttacking)
         {
             UpdateAnimations();
-        }
-
-        if (isChasing && Vector3.Distance(transform.position, player.position) <= attackDistance && !isAttacking)
-        {
-            StartCoroutine(AttackPlayer());
         }
     }
 
@@ -72,33 +87,16 @@ public class EnemyAI : MonoBehaviour
             playerController.TakeDamage(damage);
         }
 
-        yield return new WaitForSeconds(1f); // Tiempo de enfriamiento del ataque
+        lastAttackTime = Time.time;
 
+        yield return new WaitForSeconds(1f); // Duración de la animación de ataque
         isAttacking = false;
         agent.isStopped = false;
-    }
 
-    public void TakeDamage(int amount)
-    {
-        if (isDead) return;
-
-        currentHealth -= amount;
-        if (currentHealth <= 0)
+        if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
-            Die();
+            GoToNextPatrolPoint();
         }
-        else
-        {
-            animator.SetTrigger("Hit"); // si tienes una animación de recibir golpe
-        }
-    }
-
-    void Die()
-    {
-        isDead = true;
-        agent.isStopped = true;
-        animator.SetTrigger("Die"); // si tienes una animación de muerte
-        Destroy(gameObject, 3f); // destruye al enemigo tras 3 segundos
     }
 
     IEnumerator WaitAndPatrol()
@@ -114,7 +112,8 @@ public class EnemyAI : MonoBehaviour
 
     void GoToNextPatrolPoint()
     {
-        if (patrolPoints.Length == 0) return;
+        if (patrolPoints == null || patrolPoints.Length == 0) return;
+
         currentPatrolIndex = Random.Range(0, patrolPoints.Length);
         agent.speed = moveSpeed;
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
@@ -132,6 +131,35 @@ public class EnemyAI : MonoBehaviour
         isChasing = true;
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        // Llamar al evento de muerte y dar energía al jugador de inmediato
+        animator.SetTrigger("Die");
+        agent.isStopped = true;
+        GetComponent<Collider>().enabled = false;
+        this.enabled = false;
+
+        // Otorgar energía al jugador si está cerca
+        ThirdPersonController playerController = player.GetComponent<ThirdPersonController>();
+        if (playerController != null)
+        {
+            playerController.OnEnemyKilled();
+        }
+
+        // Destruir de inmediato sin retraso
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)
