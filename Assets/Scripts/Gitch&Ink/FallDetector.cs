@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ using UnityEngine.SceneManagement;
 
 public class FallDetector : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class FallDetector : MonoBehaviour
         // Aquí puedes poner lo que pasa cuando el jugador cae al vacío
         // Por ejemplo, podrías reiniciar la escena o mostrar un mensaje
         Debug.Log("¡El jugador ha caído al vacío! Has perdido.");
+        SceneManager.LoadScene("ScoreFinal");
 
         // Opcionalmente, puedes reiniciar la escena o mostrar la pantalla de fin de juego
         // UnityEngine.SceneManagement.SceneManager.LoadScene("NombreDeTuEscena");

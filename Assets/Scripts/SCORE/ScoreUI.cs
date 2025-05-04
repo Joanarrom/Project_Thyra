@@ -9,6 +9,6 @@ public class ScoreUI : MonoBehaviour
 
     private void Update()
     {
-        scoreText.text = "Puntuación: " + ScoreManager.Instance.GetScore();
+        scoreText.text = "Score: " + ScoreManager.Instance.GetScore();
     }
 }

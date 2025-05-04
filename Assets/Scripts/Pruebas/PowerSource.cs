@@ -37,8 +37,19 @@ public class PowerSource : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject); // Destruir el PowerSource cuando se acabe la salud
-            Instance.PowerSourceDestroyed(); // Notificar a PowerSourceManager que se destruyó este PowerSource
+                  
+         EnemyScore score = GetComponent<EnemyScore>();
+         if (score != null)
+         {
+            score.Morir(); // Esto suma puntos y destruye el objeto
+         }
+         else
+         {
+            Destroy(gameObject); // Fallback por si no tiene EnemyScore
+         }
+
+         
+         Instance.PowerSourceDestroyed();
         }
     }
 }

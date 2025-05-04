@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -143,11 +143,14 @@ public class BossController : MonoBehaviour
         if (marker != null) markerRenderer.enabled = true;
     }
 
-    // Método para manejar la muerte del Boss cuando todos los PowerSources han sido destruidos
     void Die()
     {
-        Debug.Log("Boss derrotado!");
-        // Aquí puedes agregar la lógica para lo que suceda cuando el Boss muera (pantalla de victoria, transición, etc.)
-        Destroy(gameObject);
+     Debug.Log("Boss derrotado!");
+     Destroy(gameObject);
+
+     // Esperar un momento antes de cargar la nueva escena
+      SceneManager.LoadScene("ScoreFinal");
     }
+
+    
 }

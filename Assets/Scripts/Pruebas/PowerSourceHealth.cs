@@ -13,7 +13,16 @@ public class PowerSourceHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject); // Esto activará OnDestroy() en PowerSource.cs
+              // Añadir puntuación si tiene EnemyScore
+         EnemyScore score = GetComponent<EnemyScore>();
+         if (score != null)
+         {
+            score.Morir(); // Esto suma puntos y destruye el objeto
+         }
+         else
+         {
+            Destroy(gameObject); // Fallback por si no tiene EnemyScore
+         }
         }
     }
 }

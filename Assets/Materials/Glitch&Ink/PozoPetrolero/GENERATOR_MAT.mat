@@ -90,7 +90,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrainIntensity: 0.07
+    - _GrainIntensity: 0.018
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineScale: 0.78

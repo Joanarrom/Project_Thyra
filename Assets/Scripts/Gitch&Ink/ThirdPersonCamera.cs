@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
-{public Transform player;
+{
+        public Transform player;
     public Transform cameraPivot;
     public float mouseSensitivity = 100f;
     public float cameraDistance = 5f;
     public Vector2 verticalClamp = new Vector2(-30, 60);
-    
+
     private float mouseX;
     private float mouseY;
     private float currentCameraDistance;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         currentCameraDistance = cameraDistance;
-        
+
         // Asegurar que el pivot empiece en la posición correcta
         cameraPivot.position = player.position;
     }
@@ -49,17 +50,26 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 desiredPosition = cameraPivot.position - cameraPivot.forward * cameraDistance;
-        
-        if(Physics.Linecast(cameraPivot.position, desiredPosition, out hit))
+
+        float targetDistance;
+
+        if (Physics.Linecast(cameraPivot.position, desiredPosition, out hit))
         {
-            currentCameraDistance = Mathf.Clamp(hit.distance, 1f, cameraDistance);
+            targetDistance = Mathf.Clamp(hit.distance, 1f, cameraDistance);
         }
         else
         {
-            currentCameraDistance = cameraDistance;
+            targetDistance = cameraDistance;
         }
-        
+
+        // ✅ Suavizar transición para evitar zooms bruscos
+        currentCameraDistance = Mathf.Lerp(currentCameraDistance, targetDistance, Time.deltaTime * 10f);
+
+        // Posicionar cámara
         transform.position = cameraPivot.position - cameraPivot.forward * currentCameraDistance;
         transform.LookAt(cameraPivot.position);
+
+        // Opcional: dibuja el rayo para depuración
+        // Debug.DrawLine(cameraPivot.position, desiredPosition, Color.red);
     }
 }

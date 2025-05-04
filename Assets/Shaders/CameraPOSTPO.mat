@@ -107,7 +107,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrainIntensity: 0.069
+    - _GrainIntensity: 0.017
     - _GrayscaleIntensity: 1
     - _Metallic: 0
     - _NoiseIntensity: 0.54
@@ -131,7 +131,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _VignetteIntensity: 0.221
+    - _VignetteIntensity: 0.249
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

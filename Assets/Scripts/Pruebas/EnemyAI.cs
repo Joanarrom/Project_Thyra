@@ -158,8 +158,15 @@ public class EnemyAI : MonoBehaviour
             playerController.OnEnemyKilled();
         }
 
-        // Destruir de inmediato sin retraso
-        Destroy(gameObject);
+      EnemyScore score = GetComponent<EnemyScore>();
+        if (score != null)
+        {
+         score.Morir(); // Esto sumará puntos y destruirá el objeto
+        }
+     else
+     {
+         Destroy(gameObject); // Fallback por si no tiene EnemyScore
+     }
     }
 
     void OnTriggerEnter(Collider other)

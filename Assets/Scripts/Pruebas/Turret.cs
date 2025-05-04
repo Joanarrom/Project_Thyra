@@ -129,9 +129,11 @@ public class Turret : MonoBehaviour
     {
         if (!firePoint || !bulletPrefab) return;
 
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);  // Instancia el proyectil
+        // Ajusta la altura del proyectil para que no colisione con el suelo prematuramente
+        Vector3 adjustedFirePoint = firePoint.position + Vector3.up * 0.1f;  // Aumenta la altura del disparo
 
-        Vector3 direction = (player.position - firePoint.position).normalized;  // Calcula la dirección del disparo
+        GameObject bullet = Instantiate(bulletPrefab, adjustedFirePoint, firePoint.rotation);  // Instancia el proyectil
+        Vector3 direction = (player.position - adjustedFirePoint).normalized;  // Calcula la dirección del disparo
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
         if (rb)

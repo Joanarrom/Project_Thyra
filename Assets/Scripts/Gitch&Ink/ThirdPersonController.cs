@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonController : MonoBehaviour
@@ -76,7 +77,7 @@ public class ThirdPersonController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.lockState = CursorLockMode.Locked;
         currentEnergy = maxEnergy;
         UpdateEnergyUI();
         
@@ -311,6 +312,7 @@ public class ThirdPersonController : MonoBehaviour
         animator.SetTrigger(animIDDie);
         controller.enabled = false;
         enabled = false;
+         SceneManager.LoadScene("ScoreFinal");
     }
 
     void OnDrawGizmos()

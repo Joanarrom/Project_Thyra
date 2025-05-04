@@ -8,14 +8,10 @@ public class MainMenuController : MonoBehaviour
    
     public void StartGame()
     {
-        SceneManager.LoadScene("Tutorial"); 
+        SceneManager.LoadScene("Boss_Scene"); 
 
     }
-    public void OpenSettings()
-    {
-        SceneManager.LoadScene("SettingsScene");  
-
-    }
+  
     public void QuitGame()
     {
         Debug.Log("Saliendo del juego...");
