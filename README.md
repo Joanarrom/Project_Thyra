@@ -42,4 +42,7 @@ PW: 12345678
 
 [EnlaceBuild](https://drive.google.com/drive/folders/1rNRmnsJiutYaNbQwassF9YYoRNHrWJWQ?usp=sharing)
 
+#Web
+[EnlaceWeb](https://gabrielcrespicrespi.github.io/Glitch-Ink/)
+
 
